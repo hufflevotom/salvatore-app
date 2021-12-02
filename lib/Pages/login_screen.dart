@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:salvatore_app/Providers/login_form_provider.dart';
+import 'package:salvatore_app/Services/services.dart';
 import 'package:salvatore_app/Utils/Styles/custom_colors.dart';
 import 'package:salvatore_app/Utils/Styles/styles.dart';
 import 'package:salvatore_app/Utils/Widgets/widgets.dart';
@@ -92,9 +93,18 @@ class _LoginForm extends StatelessWidget {
                   ? null
                   : () async {
                       FocusScope.of(context).unfocus();
+                      final loginService =
+                          Provider.of<LoginService>(context, listen: false);
                       if (!loginForm.isValidForm()) return;
                       loginForm.isLoading = true;
-                      Navigator.pushReplacementNamed(context, 'home');
+                      final String? errorMessage = await loginService.login(
+                          loginForm.docIdentidad, loginForm.password);
+                      if (errorMessage == null) {
+                        Navigator.pushReplacementNamed(context, 'home');
+                      } else {
+                        print(errorMessage);
+                        loginForm.isLoading = false;
+                      }
                     },
             ),
           ],
