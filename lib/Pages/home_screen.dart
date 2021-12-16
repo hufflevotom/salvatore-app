@@ -114,6 +114,7 @@ class _HomeScreenState extends State<HomeScreen> {
               Column(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
+                  //TODO: Evaluar selección de folio
                   Container(
                     padding: EdgeInsets.only(bottom: 25),
                     child: CustomCard(

@@ -30,6 +30,9 @@ class MyApp extends StatelessWidget {
         'home': (_) => HomeScreen(),
         'sesion': (_) => SesionScreen(),
         'ruta': (_) => RutaScreen(),
+        'folio': (_) => FolioScreen(),
+        'problema': (_) => ProblemaScreen(),
+        'finalizar': (_) => FinalizarScreen(),
       },
       theme: ThemeData(
           appBarTheme: AppBarTheme(

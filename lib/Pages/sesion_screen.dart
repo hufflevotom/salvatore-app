@@ -218,6 +218,7 @@ class SesionScreen extends StatelessWidget {
                 ),
               ),
               onPressed: () {
+                //TODO: Destruir sesión
                 Navigator.pushReplacementNamed(context, 'login');
               },
             ),
