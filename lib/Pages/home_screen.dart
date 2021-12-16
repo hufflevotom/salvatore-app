@@ -1,7 +1,7 @@
 import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:http/http.dart' as http;
+// import 'package:http/http.dart' as http;
 import 'package:mapbox_gl/mapbox_gl.dart';
 import 'package:salvatore_app/Utils/Styles/styles.dart';
 import 'package:salvatore_app/Utils/Widgets/widgets.dart';
@@ -12,7 +12,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  final center = LatLng(37.810575, -122.477174);
+  final center = LatLng(-12.2277325, -76.8618111);
 
   MapboxMapController? mapController;
 
@@ -61,8 +61,10 @@ class _HomeScreenState extends State<HomeScreen> {
                   children: [
                     MaterialButton(
                       shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.only(
-                              bottomRight: Radius.circular(30))),
+                        borderRadius: BorderRadius.only(
+                          bottomRight: Radius.circular(30),
+                        ),
+                      ),
                       disabledColor: CustomColors.gris_100,
                       elevation: 0,
                       color: CustomColors.naranja_100,
@@ -78,7 +80,9 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                         ),
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.pushNamed(context, 'sesion');
+                      },
                     ),
                     Spacer(),
                     MaterialButton(
@@ -100,11 +104,99 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                         ),
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.pushNamed(context, 'ruta');
+                      },
                     ),
                   ],
                 ),
               ),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Container(
+                    padding: EdgeInsets.only(bottom: 25),
+                    child: CustomCard(
+                      child: Column(
+                        children: [
+                          Row(
+                            children: [
+                              Text(
+                                'Doc. Identidad: ',
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  color: CustomColors.negro_100,
+                                ),
+                              ),
+                              Text('data'),
+                            ],
+                          ),
+                          SizedBox(
+                            height: 8,
+                          ),
+                          Row(
+                            children: [
+                              Text(
+                                'Nombre: ',
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  color: CustomColors.negro_100,
+                                ),
+                              ),
+                              Text('data'),
+                            ],
+                          ),
+                          SizedBox(
+                            height: 8,
+                          ),
+                          Row(
+                            children: [
+                              Text(
+                                'Teléfono: ',
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  color: CustomColors.negro_100,
+                                ),
+                              ),
+                              Text('data'),
+                            ],
+                          ),
+                          SizedBox(
+                            height: 8,
+                          ),
+                          Row(
+                            children: [
+                              Text(
+                                'Distrito: ',
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  color: CustomColors.negro_100,
+                                ),
+                              ),
+                              Text('data'),
+                            ],
+                          ),
+                          SizedBox(
+                            height: 8,
+                          ),
+                          Row(
+                            children: [
+                              Text(
+                                'Dirección: ',
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  color: CustomColors.negro_100,
+                                ),
+                              ),
+                              Text('data'),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              )
             ],
           ),
         ),
@@ -115,7 +207,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Column botonesFlotantes() {
     return Column(
-      mainAxisAlignment: MainAxisAlignment.end,
+      mainAxisAlignment: MainAxisAlignment.start,
       children: <Widget>[
         // Símbolos
         // FloatingActionButton(
@@ -150,19 +242,25 @@ class _HomeScreenState extends State<HomeScreen> {
         // SizedBox(height: 5),
 
         // Cambiar Estilos
-        FloatingActionButton(
-            backgroundColor: CustomColors.azul_100,
-            elevation: 4,
-            child: Icon(Icons.map_outlined, color: CustomColors.blanco),
-            onPressed: () {
-              if (selectedStyle == oscuroStyle) {
-                selectedStyle = streetStyle;
-              } else {
-                selectedStyle = oscuroStyle;
-              }
-              _onStyleLoaded();
-              setState(() {});
-            })
+        Container(
+          padding: EdgeInsets.only(top: 130),
+          child: FloatingActionButton(
+              backgroundColor: CustomColors.azul_100,
+              elevation: 4,
+              child: Icon(
+                Icons.map_outlined,
+                color: CustomColors.blanco,
+              ),
+              onPressed: () {
+                if (selectedStyle == oscuroStyle) {
+                  selectedStyle = streetStyle;
+                } else {
+                  selectedStyle = oscuroStyle;
+                }
+                _onStyleLoaded();
+                setState(() {});
+              }),
+        )
       ],
     );
   }
